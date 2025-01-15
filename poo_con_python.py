@@ -37,8 +37,12 @@ class Personaje:
     
     def set_fuerza(self, fuerza):
         self.__fuerza = fuerza if fuerza > 0 else print("La fuerza debe ser mayor a 0")
+    
+class Guerrero(Personaje):
+    # Sobreescribir constructor
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.espada = espada
 
-mi_personaje = Personaje("Abadon", 616, 616, 616, 616) # Character constructor
-mi_enemigo = Personaje("Gabriel", 777, 777, 777, 777)
-mi_personaje._Personaje__fuerza = 10
-mi_personaje.atributos()
+hercules = Guerrero("Hercules", 100, 100, 100, 100)
+hercules.atributos()
