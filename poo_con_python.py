@@ -1,39 +1,44 @@
 class Personaje:
     def __init__(self, nombre, fuerza, inteligencia, defensa, vida):
-        self.nombre = nombre
-        self.fuerza = fuerza
-        self.inteligencia = inteligencia
-        self.defensa = defensa
-        self.vida = vida
+        self.__nombre = nombre
+        self.__fuerza = fuerza
+        self.__inteligencia = inteligencia
+        self.__defensa = defensa
+        self.__vida = vida
 
     def atributos(self):
-        print(f"Nombre: {self.nombre}\nFuerza: {self.fuerza}\nInteligencia: {self.inteligencia}\nDefensa: {self.defensa}\nVida: {self.vida}")
+        print(f"Nombre: {self.__nombre}\nFuerza: {self.__fuerza}\nInteligencia: {self.__inteligencia}\nDefensa: {self.__defensa}\nVida: {self.__vida}")
     
     def subir_nivel(self, fuerza, inteligencia, defensa, vida):
-        self.fuerza += fuerza
-        self.inteligencia += inteligencia
-        self.defensa += defensa
-        self.vida += vida
+        self.__fuerza += fuerza
+        self.__inteligencia += inteligencia
+        self.__defensa += defensa
+        self.__vida += vida
 
-    def confirmar_vida(self):
-        return self.vida > 0
+    def esta_vivo(self):
+        return self.__vida > 0
     
     def morir(self):
-        self.vida = 0
-        print(self.nombre, "ha muerto")
+        self.__vida = 0
+        print(self.__nombre, "ha muerto")
     
     def dmg(self, enemigo):
-        return enemigo.defensa - self.fuerza
+        return enemigo.__defensa - self.__fuerza
 
     def atacar(self, enemigo):
         dmg = self.dmg(enemigo)
-        enemigo.vida -= dmg
-        print(self.nombre, "ha hecho", dmg, "de daño a", enemigo.nombre)
-        print("La vida de", enemigo.nombre, "es", enemigo.vida)
+        enemigo.__vida -= dmg
+        if not enemigo.esta_vivo():
+            enemigo.morir()
+        print("La vida de", enemigo.__nombre, "es", enemigo.__vida)
+    
+    def get_fuerza():
+        return self.__fuerza
+    
+    def set_fuerza(self, fuerza):
+        self.__fuerza = fuerza if fuerza > 0 else print("La fuerza debe ser mayor a 0")
 
 mi_personaje = Personaje("Abadon", 616, 616, 616, 616) # Character constructor
 mi_enemigo = Personaje("Gabriel", 777, 777, 777, 777)
-print()
+mi_personaje._Personaje__fuerza = 10
 mi_personaje.atributos()
-mi_personaje.atacar(mi_enemigo)
-mi_enemigo.atributos()
